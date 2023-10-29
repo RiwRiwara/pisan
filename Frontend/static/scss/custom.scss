@@ -1,0 +1,18 @@
+$primary: #551b8f;
+$secondary: #d0aff0;
+$white : #ffffff;
+
+
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+@import 'node_modules/bootstrap/scss/mixins';
+
+$bs-primary: $primary;        
+$bs-secondary: $secondary;    
+
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+.btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-hover-color: #ffffff; }

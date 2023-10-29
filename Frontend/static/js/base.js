@@ -11,17 +11,3 @@ async function getSession() {
         return null;
     }
 }
-
-async function JoinNow() {
-    try {
-        var ssdata = await getSession();
-        console.log(ssdata);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-
-function printReceipt() {
-    print();
-}

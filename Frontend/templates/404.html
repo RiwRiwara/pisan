@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}404 page not found{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-content-center">
+    <div class="d-flex flex-column">
+        <h1 style="font-size: 5rem;" class="text-primary">404 Page not found!</h1>
+        <button class="btn " onclick="back()">
+            <i class="fs-1 bi bi-arrow-left text-secondary">back to home</i>
+        </button>
+    </div>
+</div>
+
+<script>
+    function back() {
+        window.location.href = "/";
+    }
+</script>
+
+{% endblock %}

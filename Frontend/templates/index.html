@@ -4,9 +4,42 @@
 
 {% block content %}
 
+<style>
+    #login-form {
+        max-width: 500px;
+        border-bottom: var(--bs-primary) 5px solid;
+    }
 
-<div class="container" style="min-height: 70vh">
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus velit quo deserunt excepturi ipsum aperiam
-        consectetur nisi facere. Aut sit saepe cupiditate vitae quidem explicabo odit incidunt dolorem et dolores?</p>
-</div>
+    .form-label {
+        font-weight: 400;
+        color: var(--bs-primary);
+    }
+</style>
+    <div class="d-flex justify-content-center ">
+        <div class="d-flex flex-column">
+            <h1 class="text-primary fw-bold ">LOGIN</h1>
+            <p class="text-muted">If need to register contact riw.awirut@gmail.com</p>
+            <form class="w-100 p-2 pb-1" action="/signin" method="post" id="login-form">
+                <div class="mb-3">
+                    <label for="" class="form-label">TELEPHONE</label>
+                    <input type="text" class="form-control" name="phone" id="phone-field"
+                        aria-describedby="telephoneHelpId" placeholder="08XXXXX">
+                    <small id="message-phone" class="form-text "></small>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">PASSWORD</label>
+                    <input type="password" class="form-control" name="password" id="password-field"
+                        placeholder="enter your password">
+                    <small id="message-password" class="form-text "></small>
+
+                </div>
+                <button type="submit" class="fw-bold btn btn-primary fs-5 w-100">SIGNIN</button>
+                <div class="text-danger text-center my-2" id="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+
 {% endblock %}
