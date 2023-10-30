@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<div class="{% if request.path == '/' %} d-none{% endif %}">
+    <nav class="bg-primary d-flex justify-content-evenly">
+        <div class="nav-list{% if request.path == '/page/home' %} nav-selected{% endif %}">
+            <a href="/page/home">HOME</a>
+        </div>
+        <div class="nav-list{% if request.path == '/page/history' %} nav-selected{% endif %}">
+            <a href="/page/history">HISTORY</a>
+        </div>
+        <div class="nav-list{% if request.path == '/page/profile' %} nav-selected{% endif %}">
+            <a href="/page/profile">PROFILE</a>
+        </div>
+    </nav>
+</div>

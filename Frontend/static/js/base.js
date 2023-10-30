@@ -11,3 +11,29 @@ async function getSession() {
         return null;
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll('.nav-list a');
+    const content = document.getElementById('content');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const href = this.getAttribute('href');
+
+            content.classList.add('exit');
+            setTimeout(function() {
+                fetch(href)
+                    .then(response => response.text())
+                    .then(data => {
+                        content.innerHTML = data;
+                        content.classList.add('enter');
+                        content.classList.remove('exit');
+
+                        history.pushState(null, null, href);
+                    });
+            }, 500);
+        });
+    });
+});

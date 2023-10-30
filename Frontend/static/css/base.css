@@ -9,3 +9,23 @@ main{
   margin-top: 50px;
 }
 
+.main-container{
+  border-radius: 10px;
+  background-color: rgba(237, 223, 250, 0.604);
+  padding: 20px;
+  border: 2px solid var(--bs-primary);
+  color: var(--bs-primary);
+}
+
+#content {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+#content.exit {
+  opacity: 0;
+}
+
+#content.enter {
+  opacity: 1;
+}
