@@ -42,6 +42,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
     if (!validatePhone() || !validatePassword()) {
         event.preventDefault();
     }
+
 });
 
 

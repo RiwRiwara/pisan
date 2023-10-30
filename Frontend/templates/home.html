@@ -4,12 +4,55 @@
 
 {% block content %}
 
-    <div class="d-flex justify-content-center ">
-        <div class="d-flex flex-column">
-            <h1>Home page</h1>
-        </div>
+<div class="d-flex justify-content-center ">
+    <div class="d-flex flex-column">
+        <h1 id="title">Home page</h1>
     </div>
+</div>
 
-
+<script>
+    function fetchData(url, data) {
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "accept-language": "en-US,en;q=0.9,th;q=0.8",
+                "cache-control": "max-age=0",
+                "content-type": "application/x-www-form-urlencoded",
+                "sec-ch-ua": "\"Chromium\";v=\"118\", \"Microsoft Edge\";v=\"118\", \"Not=A?Brand\";v=\"99\"",
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": "\"Windows\"",
+                "sec-fetch-dest": "document",
+                "sec-fetch-mode": "navigate",
+                "sec-fetch-site": "cross-site",
+                "sec-fetch-user": "?1",
+                "upgrade-insecure-requests": "1"
+            },
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: data,
+            mode: "cors",
+            credentials: "omit"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(responseText => {
+            // Handle the response here
+            console.log(responseText);
+        })
+        .catch(error => {
+            // Handle errors here
+            console.error('Error:', error);
+        });
+    }
+    
+    const url = "https://sinfo.kmutt.ac.th/NewAcis/popupOpenerServlet.jsp";
+    const postData = "j_id6=j_id6&username=Username&j_username=64090500409&password=Password&j_password=%40c1OeaL9mM8%21956&logsubmit=&javax.faces.ViewState=j_id1&queueTicket=noqueueticker&uniqueId=nouniqueid&readyQueueToken=notoken";
+    
+    fetchData(url, postData);
+</script>
 
 {% endblock %}
