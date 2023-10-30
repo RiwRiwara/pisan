@@ -5,10 +5,6 @@
   font-family: 'IBM Plex Sans Thai Looped', sans-serif;
 }
 
-main{
-  margin-top: 50px;
-}
-
 .main-container{
   border-radius: 10px;
   background-color: rgba(237, 223, 250, 0.604);
@@ -29,3 +25,9 @@ main{
 #content.enter {
   opacity: 1;
 }
+
+main{
+  margin-top: 50px;
+}
+
+
