@@ -15,13 +15,14 @@ def api_entry():
 
 @defaultAPI.route('/')
 def index():
-    if 'IsUserLoggedIn' not in session:
-        session['IsUserLoggedIn'] = False
+    # if 'IsUserLoggedIn' not in session:
+    #     session['IsUserLoggedIn'] = False
 
-    if session['IsUserLoggedIn']:
-        return redirect(url_for('defaultAPI.page', page='home'))
+    # if session['IsUserLoggedIn']:
+    #     return redirect(url_for('defaultAPI.page', page='home'))
 
-    return render_template('index.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=None)
+    return render_template('seo.html')
+    # return render_template('index.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=None)
 
 
 @defaultAPI.route('/view_session')
