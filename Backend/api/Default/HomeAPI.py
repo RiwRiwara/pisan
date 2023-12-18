@@ -1,5 +1,5 @@
 from . import defaultAPI
-from flask import  jsonify, render_template, request, session, redirect, url_for, send_file
+from flask import  jsonify, render_template, request, session, redirect, url_for, send_file, send_from_directory
 import json
 from Backend.db import db
 
@@ -103,3 +103,9 @@ def renderPage(page, args):
         return render_template(page + '.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=pageData)
     except:
         return render_template('404.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=pageData)
+
+
+@defaultAPI.route('/css/<path:filename>')
+def send_css(filename):
+    print(filename)
+    return send_from_directory('css', filename)

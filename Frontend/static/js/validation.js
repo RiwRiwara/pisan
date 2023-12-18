@@ -1,3 +1,13 @@
+function showLoadingBackdrop() {
+    var backdrop = document.getElementById('loading-backdrop');
+    backdrop.style.display = 'flex'; // Show the backdrop
+}
+
+function hideLoadingBackdrop() {
+    var backdrop = document.getElementById('loading-backdrop');
+    backdrop.style.display = 'none'; // Hide the backdrop
+}
+
 function validatePhone() {
     var phoneNumber = document.getElementById('phone-field').value;
 
@@ -37,12 +47,13 @@ function validateLogin() {
     }, 1500);
 }
 
-
 document.getElementById('login-form').addEventListener('submit', function (event) {
+    showLoadingBackdrop(); // Show the loading backdrop when form is submitted
+
     if (!validatePhone() || !validatePassword()) {
         event.preventDefault();
+        hideLoadingBackdrop(); // Hide the backdrop if form submission is prevented
     }
-
 });
 
 
