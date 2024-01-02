@@ -110,3 +110,7 @@ def renderPage(page, args):
 def send_css(filename):
     print(filename)
     return send_from_directory('css', filename)
+@defaultAPI.route('/js/<path:filename>')
+def send_js(filename):
+    print(filename)
+    return send_from_directory('js', filename)
