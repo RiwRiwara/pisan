@@ -1,44 +1,63 @@
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&display=swap');
-*{
-  padding: 0;
-  margin: 0;
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap');
+* {
+	padding: 0;
+	margin: 0;
+	font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 
-.main-container{
-  border-radius: 10px;
-  background-color: rgba(237, 223, 250, 0.604);
-  padding: 20px;
-  border: 2px solid var(--bs-primary);
-  color: var(--bs-primary);
+
+.filter-section {
+	background-color: rgba(255, 255, 255, 0.846);
+	border-radius: 8px;
+	max-width: 750px;
+	max-height: 400px;
+	width: fit-content;
+	height: fit-content;
+	padding: 10px;
 }
 
-#content {
-  transition: opacity 0.5s;
-  opacity: 1;
+.bgImageSearch {
+	background-color: #000000;
+	background-image: url('https://www.ruksaaproperty.com/wp-content/themes/rukksaa/images/raksa-banner2.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 400px;
 }
 
-#content.exit {
-  opacity: 0;
+.popularPlaceCard {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+	padding: 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #000000;
+    opacity: 0.8; 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+	 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+	 -webkit-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+	transition: transform 0.5s ease-out;
 }
 
-#content.enter {
-  opacity: 1;
+.popularPlaceCard:hover {
+	transform: scale(1.1);
+}
+.servicebox{
+	border-radius: 10px;
 }
 
-main{
-  margin-top: 50px;
+.servicebox:hover{
+	background-color: #95becf;
 }
 
-.testCss{
-  background-color: brown;
-  padding: 100px;
+img{
+	border-radius: 8px;
 }
-
-/* phone version */
-@media (max-width: 768px) {
-  .main-container{
-    padding: 10px;
-  }
-}
-
