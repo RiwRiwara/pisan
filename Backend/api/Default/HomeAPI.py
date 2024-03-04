@@ -78,6 +78,9 @@ def logout():
     return redirect(url_for('defaultAPI.index'))
 
 
+@defaultAPI.route('/jame')
+def jame():
+    return render_template('jame.html')
 @defaultAPI.route('/page/<page>')
 def page(page):
     if 'IsUserLoggedIn' not in session:

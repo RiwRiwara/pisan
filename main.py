@@ -15,5 +15,5 @@ app.secret_key = os.getenv("PRIVATE_KEY")
 app.register_blueprint(defaultAPI, url_prefix='/')
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(host=os.getenv('HOST'), port=int(os.getenv('PORT')), debug=True)
+    app.run(debug=True)
+    # app.run(host=os.getenv('HOST'), port=int(os.getenv('PORT')), debug=True)
