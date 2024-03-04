@@ -78,7 +78,7 @@ def logout():
     return redirect(url_for('defaultAPI.index'))
 
 
-@defaultAPI.route('/jame')
+@defaultAPI.route('/jameten')
 def jame():
     return render_template('jame.html')
 @defaultAPI.route('/page/<page>')
