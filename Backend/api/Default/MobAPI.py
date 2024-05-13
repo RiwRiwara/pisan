@@ -76,21 +76,20 @@ def renderPage(page):
 def getAllItems():
     query_params = {}
     
-    # Get all query parameters
     category = request.args.get('category')
     sale = request.args.get('sale')
     brand = request.args.get('brand')
     name = request.args.get('name')
 
-    # Construct the query based on provided parameters
     if category:
         query_params['category'] = category
     if sale:
         query_params['sale'] = sale
     if brand:
         query_params['brand'] = brand
+        
     if name:
-        query_params['name'] = name
+        query_params['name'] = {'$regex': f'.*{name}.*', '$options': 'i'}
 
     items = []
     if query_params:
