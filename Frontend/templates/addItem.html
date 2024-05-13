@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Insert Items</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body class="p-4 bg-gray-200">
+
+    <h1 class="text-3xl font-semibold text-gray-900">Items Dashboard</h1>
+
+
+    <div id="accordion-collapse" data-accordion="collapse" class="bg-white">
+        <h2 id="accordion-collapse-heading-1">
+            <button type="button"
+                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
+                aria-controls="accordion-collapse-body-1">
+                <span>
+                    Add new item detail
+                </span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5 5 1 1 5" />
+                </svg>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+
+            <form class="container shadow-md rounded-md p-4 mt-10 bg-white" id="addItemForm" method="POST"
+                onsubmit="return confirm('Are you sure you want to add this item?')"
+                style="width: 60%;margin-left: auto;margin-right: auto;">
+
+                <div class="border-b border-gray-900/10 pb-12">
+                    <h2 class="text-xl font-semibold leading-7 text-gray-900">Add new item detail</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                        Fill in the form below to add a new item to the inventory.
+                    </p>
+
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Item
+                                Name</label>
+                            <div class="mt-2">
+                                <input type="text" name="name" id="name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="brand" class="block text-sm font-medium leading-6 text-gray-900">Brand</label>
+                            <div class="mt-2">
+                                <input type="text" name="brand" id="brand"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="sale" class="block text-sm font-medium leading-6 text-gray-900">Sale
+                                price</label>
+                            <div class="mt-2">
+                                <input type="text" name="sale" id="sale"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="Category"
+                                class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                            <div class="mt-2">
+                                <select id="category" name="category" autocomplete="Category-name"
+                                    class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option value="Bracelet">Bracelet</option>
+                                    <option value="Necklace">Necklace</option>
+                                    <option value="Earring">Earring</option>
+                                    <option value="Glasses">Glasses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="img" class="block text-sm font-medium leading-6 text-gray-900">Image url</label>
+                            <div class="mt-2">
+                                <input type="text" name="img" id="img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <hr class="sm:col-span-6">
+
+                        <div class="sm:col-span-3">
+                            <label for="link1" class="block text-sm font-medium leading-6 text-gray-900">Link 1</label>
+                            <div class="mt-2">
+                                <input type="text" name="link1" id="link1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link2" class="block text-sm font-medium leading-6 text-gray-900">Link 2</label>
+                            <div class="mt-2">
+                                <input type="text" name="link2" id="link2"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link3" class="block text-sm font-medium leading-6 text-gray-900">Link 3</label>
+                            <div class="mt-2">
+                                <input type="text" name="link3" id="link3"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link4" class="block text-sm font-medium leading-6 text-gray-900">Link 4</label>
+                            <div class="mt-2">
+                                <input type="text" name="link4" id="link4"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Add Item
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <h2 id="accordion-collapse-heading-2">
+            <button type="button"
+                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
+                aria-controls="accordion-collapse-body-2">
+                <span>
+                    Update item detail
+                </span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5 5 1 1 5" />
+                </svg>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+            <!-- UPDATE -->
+        </div>
+        <h2 id="accordion-collapse-heading-3">
+            <button type="button"
+                class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                data-accordion-target="#accordion-collapse-body-3" aria-expanded="false"
+                aria-controls="accordion-collapse-body-3">
+                <span>
+                    All items in the inventory
+                </span>
+                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5 5 1 1 5" />
+                </svg>
+            </button>
+        </h2>
+        <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+
+
+            <div class="relative overflow-x-auto">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Brand
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Sale
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Link 1
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Link 2
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Link 3
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Link 4
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in data %}
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <td class="px-6 py-4">
+                                <img src="{{ item.img }}" alt="product" class="h-10 w-10 object-cover rounded-lg">
+                            </td>
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ item.name }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ item.brand }}
+                            </td>
+                            <td class="px-6 py-4">
+                                ${{ item.sale }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ item.category }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ item.link1 }}">Link 1</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ item.link2 }}">Link 2</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ item.link3 }}">Link 3</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ item.link4 }}">Link 4</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const addItemForm = document.getElementById('addItemForm');
+    addItemForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(addItemForm);
+        const jsonData = {};
+        for (const [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+        const response = await fetch("/mobile/insertItem", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        });
+        const data = await response.json();
+        if (data.message === "Item inserted successfully") {
+            Swal.fire({
+                title: 'Success',
+                text: 'Item inserted successfully',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                //clear form
+                addItemForm.reset();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Failed to insert item',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
+</script>

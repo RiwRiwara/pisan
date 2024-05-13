@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 from Backend.api.Default import defaultAPI
-from Backend.api.Mobile import mobileAPI
+from Backend.api.Default import mobileAPI
 from dotenv import load_dotenv
 import os
 

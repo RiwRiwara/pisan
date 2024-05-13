@@ -74,19 +74,20 @@ def logout():
 @defaultAPI.route('/jameten')
 def jame():
     return render_template('jame.html')
+
 @defaultAPI.route('/page/<page>')
 def page(page):
-    if 'IsUserLoggedIn' not in session:
-        session['IsUserLoggedIn'] = False
-    if 'UserType' not in session:
-        session['UserType'] = "user"
+    # if 'IsUserLoggedIn' not in session:
+    #     session['IsUserLoggedIn'] = False
+    # if 'UserType' not in session:
+    #     session['UserType'] = "user"
 
-    if not session['IsUserLoggedIn'] and page not in ['login', 'signup']:
-        return redirect(url_for('defaultAPI.index'))
-    if session['IsUserLoggedIn'] and page in ['login', 'signup']:
-        return redirect(url_for('defaultAPI.index'))
-    if session['UserType'] == 'user' and page in ['admin']:
-        return redirect(url_for('defaultAPI.index'))
+    # if not session['IsUserLoggedIn'] and page not in ['login', 'signup']:
+    #     return redirect(url_for('defaultAPI.index'))
+    # if session['IsUserLoggedIn'] and page in ['login', 'signup']:
+    #     return redirect(url_for('defaultAPI.index'))
+    # if session['UserType'] == 'user' and page in ['admin']:
+    #     return redirect(url_for('defaultAPI.index'))
 
     return renderPage(page, request.args)
 
@@ -97,7 +98,8 @@ def renderPage(page, args):
             'title': 'Home'
         }
     try:
-        return render_template(page + '.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=pageData)
+        # return render_template(page + '.html', IsUserLoggedIn=sess/ion['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=pageData)
+        return render_template(page + '.html', pageData=pageData)
     except:
         return render_template('404.html', IsUserLoggedIn=session['IsUserLoggedIn'], UserType=session.get('UserType', None), pageData=pageData)
 
