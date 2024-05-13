@@ -126,6 +126,8 @@ def insertItem():
     try:
         if request.is_json:
             item = request.json
+            item['views'] = int(item['views'])
+            print(item)
             db.items.insert_one(item)
             return jsonify({"message": "Item inserted successfully"}), 200
         else:
@@ -140,7 +142,7 @@ def updateItem(id):
         if request.is_json:
             data = request.json
             data.pop('_id', None)
-            
+            data['views'] = int(data['views'])
             db.items.update_one({"_id": ObjectId(id)}, {"$set": data})
             return jsonify({"message": "Item updated successfully"}), 200
         else:
@@ -151,12 +153,12 @@ def updateItem(id):
 
 
 
-# # update a views of an item to 0
-# @mobileAPI.route('/updateViews', methods=['GET'])
-# def updateViews() :
-#     try:
-#         db.items.update_many({}, {"$set": {"views": 0}})
-#         return jsonify({"message": "Views updated successfully"}), 200
-#     except Exception as e:
-#         return jsonify({"message": str(e)}), 500
+# update a views of an item to 0
+@mobileAPI.route('/updateViews', methods=['GET'])
+def updateViews() :
+    try:
+        db.items.update_many({}, {"$set": {"views": 0}})
+        return jsonify({"message": "Views updated successfully"}), 200
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
     
