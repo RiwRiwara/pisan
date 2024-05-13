@@ -5,7 +5,46 @@ import json
 from bson import ObjectId
 from bson import json_util
 from Backend.db import db
+import time
 
+class Item:
+    def __init__(self,_id, name, sale, brand, img, link1, link2, link3, link4, category, link1img, link2img, link3img, link4img, description,views):
+        self._id = _id
+        self.name = name
+        self.sale = sale
+        self.brand = brand
+        self.img = img
+        self.link1 = link1
+        self.link2 = link2
+        self.link3 = link3
+        self.link4 = link4
+        self.category = category
+        self.link1img = link1img
+        self.link2img = link2img
+        self.link3img = link3img
+        self.link4img = link4img
+        self.description = description
+        self.views = views
+    def to_dict(self):
+        return {
+            '_id': str(self._id),
+            'name': self.name,
+            'sale': self.sale,
+            'brand': self.brand,
+            'img': self.img,
+            'link1': self.link1,
+            'link2': self.link2,
+            'link3': self.link3,
+            'link4': self.link4,
+            'category': self.category,
+            'link1img': self.link1img,
+            'link2img': self.link2img,
+            'link3img': self.link3img,
+            'link4img': self.link4img,
+            'description': self.description,
+            'views': self.views
+        }
+        
 
 @mobileAPI.route('/test', methods=['GET'])
 def api_entry():
@@ -20,46 +59,17 @@ def api_entry():
 @mobileAPI.route('/page/<page>')
 def page(page):
     return renderPage(page)
-
 def renderPage(page):
-    pageData = {}
+    timestamp = int(time.time())
     items = []  
-    
     if page == 'addItem':
         for item in db.items.find():
-            item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
-            items.append(item_obj.to_dict())
+            item['_id'] = str(item['_id'])
+            items.append(item)
 
-    return render_template(page + '.html', data=items) 
+    return render_template(page + '.html', data=items, timestamp=timestamp) 
 
 
-
-class Item:
-    def __init__(self,_id, name, sale, brand, img, link1, link2, link3, link4, category):
-        self._id = _id
-        self.name = name
-        self.sale = sale
-        self.brand = brand
-        self.img = img
-        self.link1 = link1
-        self.link2 = link2
-        self.link3 = link3
-        self.link4 = link4
-        self.category = category
-    def to_dict(self):
-        return {
-            '_id': str(self._id),
-            'name': self.name,
-            'sale': self.sale,
-            'brand': self.brand,
-            'img': self.img,
-            'link1': self.link1,
-            'link2': self.link2,
-            'link3': self.link3,
-            'link4': self.link4,
-            'category': self.category
-        }
-        
         
 
 @mobileAPI.route('/getItems', methods=['GET'])
@@ -82,19 +92,15 @@ def getAllItems():
     if name:
         query_params['name'] = name
 
-    # Execute the query
     items = []
     if query_params:
-        # If any query parameters are provided
         for item in db.items.find(query_params):
-            item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
-            items.append(item_obj.to_dict())
+            item['_id'] = str(item['_id'])
+            items.append(item)
     else:
-        # If no query parameters are provided, return all items
         for item in db.items.find():
-            item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
-            items.append(item_obj.to_dict())
-
+            item['_id'] = str(item['_id'])
+            items.append(item)
     return jsonify(items)
 
 
@@ -102,8 +108,12 @@ def getAllItems():
 @mobileAPI.route('/getItem/<id>', methods=['GET'])
 def getItem(id):
     item = db.items.find_one({"_id": ObjectId(id)})
-    item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
-    return jsonify(item_obj.to_dict())
+    if item:
+        item['_id'] = str(item['_id'])  
+        return jsonify(item)
+    else:
+        return jsonify({"error": "Item not found"}), 404
+
 
 @mobileAPI.route('/deleteItem/<id>', methods=['DELETE'])
 def deleteItem(id):

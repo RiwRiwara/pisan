@@ -45,7 +45,8 @@
             aria-labelledby="profile-tab">
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-blue-900 uppercase bg-blue-300 dark:bg-gray-700 dark:text-gray-400 rounded-md">
+                    <thead
+                        class="text-xs text-blue-900 uppercase bg-blue-300 dark:bg-gray-700 dark:text-gray-400 rounded-md">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                             </th>
@@ -60,6 +61,9 @@
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Views
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Link 1
@@ -79,8 +83,12 @@
                         {% for item in data %}
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                                <img src="{{ item.img }}" alt="product" class="h-10 w-10 object-cover rounded-lg">
+                                <div class=" w-20 h-20">
+                                    <img src="{{ item.img }}?timestamp={{ timestamp }}" alt="product"
+                                        class="h-20 w-20 object-cover rounded-lg )">
+                                </div>
                             </td>
+
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ item.name }}
@@ -93,6 +101,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ item.category }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ item.views }}
                             </td>
                             <td class="px-6 py-4">
                                 <a href="{{ item.link1 }}">{{ item.link1 }}</a>
@@ -174,12 +185,43 @@
                             </div>
                         </div>
 
+                        <div class="sm:col-span-3">
+                            <label for="views" class="block text-sm font-medium leading-6 text-gray-900">Views</label>
+                            <div class="mt-2">
+                                <input type="number" name="views" id="views"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-6">
+                            <label for="description"
+                                class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                            <div class="mt-2 w-full">
+                                <input type="text" name="description" id="description" hidden>
+                                <textarea name="description_area" id="description_area"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"></textarea>
+                                <script>
+                                    document.getElementById('description_area').addEventListener('input', function () {
+                                        document.getElementById('description').value = this.value;
+                                    });
+                                </script>
+                            </div>
+                        </div>
+
+
+
                         <hr class="sm:col-span-6">
 
-                        <div class="sm:col-span-3">
+                        <div class="sm:col-span-3 ">
                             <label for="link1" class="block text-sm font-medium leading-6 text-gray-900">Link 1</label>
                             <div class="mt-2">
                                 <input type="text" name="link1" id="link1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <label for="link1img" class="block text-sm font-medium leading-6 text-gray-900">Link 1
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link1img" id="link1img"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -189,6 +231,12 @@
                                 <input type="text" name="link2" id="link2"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
+                            <label for="link2img" class="block text-sm font-medium leading-6 text-gray-900">Link 2
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link2img" id="link2img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                         <div class="sm:col-span-3">
                             <label for="link3" class="block text-sm font-medium leading-6 text-gray-900">Link 3</label>
@@ -196,11 +244,23 @@
                                 <input type="text" name="link3" id="link3"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
+                            <label for="link3img" class="block text-sm font-medium leading-6 text-gray-900">Link 3
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link3img" id="link3img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                         <div class="sm:col-span-3">
                             <label for="link4" class="block text-sm font-medium leading-6 text-gray-900">Link 4</label>
                             <div class="mt-2">
                                 <input type="text" name="link4" id="link4"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <label for="link4img" class="block text-sm font-medium leading-6 text-gray-900">Link 1
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link4img" id="link4img"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -285,13 +345,44 @@
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
+                        <div class="sm:col-span-3">
+                            <label for="views" class="block text-sm font-medium leading-6 text-gray-900">Views</label>
+                            <div class="mt-2">
+                                <input type="text" name="views" id="views"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-6">
+                            <label for="description"
+                                class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                            <div class="mt-2 w-full">
+                                <input type="text" name="description" id="description" hidden>
+                                <textarea name="description_area" id="description_area"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"></textarea>
+                                <script>
+                                    document.getElementById('description_area').addEventListener('input', function () {
+                                        document.getElementById('description').value = this.value;
+                                    });
+                                </script>
+                            </div>
+                        </div>
 
                         <hr class="sm:col-span-6">
 
-                        <div class="sm:col-span-3">
+
+                        <hr class="sm:col-span-6">
+
+                        <div class="sm:col-span-3 ">
                             <label for="link1" class="block text-sm font-medium leading-6 text-gray-900">Link 1</label>
                             <div class="mt-2">
                                 <input type="text" name="link1" id="link1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <label for="link1img" class="block text-sm font-medium leading-6 text-gray-900">Link 1
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link1img" id="link1img"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -301,6 +392,12 @@
                                 <input type="text" name="link2" id="link2"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
+                            <label for="link2img" class="block text-sm font-medium leading-6 text-gray-900">Link 2
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link2img" id="link2img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                         <div class="sm:col-span-3">
                             <label for="link3" class="block text-sm font-medium leading-6 text-gray-900">Link 3</label>
@@ -308,11 +405,23 @@
                                 <input type="text" name="link3" id="link3"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
+                            <label for="link3img" class="block text-sm font-medium leading-6 text-gray-900">Link 3
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link3img" id="link3img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                         <div class="sm:col-span-3">
                             <label for="link4" class="block text-sm font-medium leading-6 text-gray-900">Link 4</label>
                             <div class="mt-2">
                                 <input type="text" name="link4" id="link4"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                            <label for="link4img" class="block text-sm font-medium leading-6 text-gray-900">Link 1
+                                image</label>
+                            <div class="mt-2">
+                                <input type="text" name="link4img" id="link4img"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -361,6 +470,12 @@
         document.querySelector('#updateItemForm input[name="link2"]').value = data.link2;
         document.querySelector('#updateItemForm input[name="link3"]').value = data.link3;
         document.querySelector('#updateItemForm input[name="link4"]').value = data.link4;
+        document.querySelector('#updateItemForm input[name="views"]').value = data.views;
+        document.querySelector('#updateItemForm textarea[name="description_area"]').value = data.description;
+        document.querySelector('#updateItemForm input[name="link1img"]').value = data.link1img;
+        document.querySelector('#updateItemForm input[name="link2img"]').value = data.link2img;
+        document.querySelector('#updateItemForm input[name="link3img"]').value = data.link3img;
+        document.querySelector('#updateItemForm input[name="link4img"]').value = data.link4img;
     });
 </script>
 
