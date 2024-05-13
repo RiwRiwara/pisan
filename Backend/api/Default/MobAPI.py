@@ -12,7 +12,8 @@ def api_entry():
     collection_names = db.list_collection_names()
     response = {
         'data': "API Running",
-        'collection_names': collection_names
+        'collection_names': collection_names,
+        'message': 'API is running successfully!'
     }
     return jsonify(response)
 
