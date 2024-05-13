@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 from Backend.api.Default import defaultAPI
+from Backend.api.Mobile import mobileAPI
 from dotenv import load_dotenv
 import os
 
@@ -13,6 +14,8 @@ app.static_folder = 'Frontend/static'
 app.secret_key = os.getenv("PRIVATE_KEY")
 
 app.register_blueprint(defaultAPI, url_prefix='/')
+app.register_blueprint(mobileAPI, url_prefix='/mobile')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
