@@ -61,13 +61,43 @@ class Item:
         }
         
         
+
 @mobileAPI.route('/getItems', methods=['GET'])
 def getAllItems():
+    query_params = {}
+    
+    # Get all query parameters
+    category = request.args.get('category')
+    sale = request.args.get('sale')
+    brand = request.args.get('brand')
+    name = request.args.get('name')
+
+    # Construct the query based on provided parameters
+    if category:
+        query_params['category'] = category
+    if sale:
+        query_params['sale'] = sale
+    if brand:
+        query_params['brand'] = brand
+    if name:
+        query_params['name'] = name
+
+    # Execute the query
     items = []
-    for item in db.items.find():
-        item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
-        items.append(item_obj.to_dict())
+    if query_params:
+        # If any query parameters are provided
+        for item in db.items.find(query_params):
+            item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
+            items.append(item_obj.to_dict())
+    else:
+        # If no query parameters are provided, return all items
+        for item in db.items.find():
+            item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
+            items.append(item_obj.to_dict())
+
     return jsonify(items)
+
+
 
 @mobileAPI.route('/getItem/<id>', methods=['GET'])
 def getItem(id):
