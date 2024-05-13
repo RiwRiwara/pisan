@@ -141,11 +141,3 @@ def updateItem(id):
 
 
 
-# @mobileAPI.route('/update-img-name', methods=['GET'])
-# def update_img_name():
-#     imageUrl = "https://ezeventstorage.blob.core.windows.net/mobile/"
-#     # add in front of the image name
-#     for item in db.items.find():
-#         if item['img']:
-#             db.items.update_one({"_id": item['_id']}, {"$set": {"img": imageUrl + item['img']}})
-#     return jsonify({"message": "Item updated successfully"}), 200
