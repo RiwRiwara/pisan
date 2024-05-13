@@ -198,10 +198,10 @@
                                 class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                             <div class="mt-2 w-full">
                                 <input type="text" name="description" id="description" hidden>
-                                <textarea name="description_area" id="description_area"
+                                <textarea name="description_area_create" id="description_area_create"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"></textarea>
                                 <script>
-                                    document.getElementById('description_area').addEventListener('input', function () {
+                                    document.getElementById('description_area_create').addEventListener('input', function () {
                                         document.getElementById('description').value = this.value;
                                     });
                                 </script>
@@ -359,10 +359,13 @@
                             <div class="mt-2 w-full">
                                 <input type="text" name="description" id="description" hidden>
                                 <textarea name="description_area" id="description_area"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"></textarea>
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                
+                                </textarea>
                                 <script>
                                     document.getElementById('description_area').addEventListener('input', function () {
-                                        document.getElementById('description').value = this.value;
+                                        console.log(this.value);
+                                        document.querySelector('#updateItemForm input[name="description"]').value = this.value;
                                     });
                                 </script>
                             </div>
@@ -471,7 +474,8 @@
         document.querySelector('#updateItemForm input[name="link3"]').value = data.link3;
         document.querySelector('#updateItemForm input[name="link4"]').value = data.link4;
         document.querySelector('#updateItemForm input[name="views"]').value = data.views;
-        document.querySelector('#updateItemForm textarea[name="description_area"]').value = data.description;
+        document.querySelector('#updateItemForm input[name="description"]').value = data.description;
+        document.querySelector('#updateItemForm textarea[name="description_area"]').innerHTML = data.description;
         document.querySelector('#updateItemForm input[name="link1img"]').value = data.link1img;
         document.querySelector('#updateItemForm input[name="link2img"]').value = data.link2img;
         document.querySelector('#updateItemForm input[name="link3img"]').value = data.link3img;

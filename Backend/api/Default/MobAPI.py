@@ -151,3 +151,13 @@ def updateItem(id):
 
 
 
+
+# # update a views of an item to 0
+# @mobileAPI.route('/updateViews', methods=['GET'])
+# def updateViews() :
+#     try:
+#         db.items.update_many({}, {"$set": {"views": 0}})
+#         return jsonify({"message": "Views updated successfully"}), 200
+#     except Exception as e:
+#         return jsonify({"message": str(e)}), 500
+    
