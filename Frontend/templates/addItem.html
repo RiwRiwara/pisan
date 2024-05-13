@@ -34,7 +34,7 @@
 
             <form class="container shadow-md rounded-md p-4 mt-10 bg-white" id="addItemForm" method="POST"
                 onsubmit="return confirm('Are you sure you want to add this item?')"
-                style="width: 60%;margin-left: auto;margin-right: auto;">
+                style="margin-left: auto;margin-right: auto;">
 
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-xl font-semibold leading-7 text-gray-900">Add new item detail</h2>
@@ -149,7 +149,121 @@
             </button>
         </h2>
         <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
-            <!-- UPDATE -->
+
+            <form class="container shadow-md rounded-md p-4 mt-10 bg-white" id="updateItemForm" method="POST"
+                onsubmit="return confirm(' Are you sure you want to update this item?')"
+                style="margin-left: auto;margin-right: auto;">
+
+                <input type="hidden" name="_id" id="_id">
+
+                <div class="border-b border-gray-900/10 pb-12">
+                    <h2 class="text-xl font-semibold leading-7 text-gray-900">
+                        Update item detail
+                    </h2>
+                    <select id="select_item" name="select_item" autocomplete="Item-name"
+                        class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <option value="" disabled selected>Select item</option>
+                        {% for item in data %}
+                        <option value="{{ item._id }}">{{ item.name }}</option>
+                        {% endfor %}
+                    </select>
+
+
+                    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Item
+                                Name</label>
+                            <div class="mt-2">
+                                <input type="text" name="name" id="name"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="brand" class="block text-sm font-medium leading-6 text-gray-900">Brand</label>
+                            <div class="mt-2">
+                                <input type="text" name="brand" id="brand"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="sale" class="block text-sm font-medium leading-6 text-gray-900">Sale
+                                price</label>
+                            <div class="mt-2">
+                                <input type="text" name="sale" id="sale"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="Category"
+                                class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                            <div class="mt-2">
+                                <select id="category" name="category" autocomplete="Category-name"
+                                    class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option value="Bracelet">Bracelet</option>
+                                    <option value="Necklace">Necklace</option>
+                                    <option value="Earring">Earring</option>
+                                    <option value="Glasses">Glasses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="img" class="block text-sm font-medium leading-6 text-gray-900">Image url</label>
+                            <div class="mt-2">
+                                <input type="text" name="img" id="img"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                        <hr class="sm:col-span-6">
+
+                        <div class="sm:col-span-3">
+                            <label for="link1" class="block text-sm font-medium leading-6 text-gray-900">Link 1</label>
+                            <div class="mt-2">
+                                <input type="text" name="link1" id="link1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link2" class="block text-sm font-medium leading-6 text-gray-900">Link 2</label>
+                            <div class="mt-2">
+                                <input type="text" name="link2" id="link2"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link3" class="block text-sm font-medium leading-6 text-gray-900">Link 3</label>
+                            <div class="mt-2">
+                                <input type="text" name="link3" id="link3"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="link4" class="block text-sm font-medium leading-6 text-gray-900">Link 4</label>
+                            <div class="mt-2">
+                                <input type="text" name="link4" id="link4"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="mt-8 flex justify-end gap-4">
+                        <button type="button" id="deleteItem"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Delete Item
+                        </button>
+                        <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Update Item
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <h2 id="accordion-collapse-heading-3">
             <button type="button"
@@ -248,6 +362,26 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    select_item.addEventListener('change', async (e) => {
+        const response = await fetch(`/mobile/getItem/${e.target.value}`);
+        const data = await response.json();
+
+
+        document.querySelector('#updateItemForm input[name="_id"]').value = data._id;
+        document.querySelector('#updateItemForm input[name="name"]').value = data.name;
+        document.querySelector('#updateItemForm input[name="brand"]').value = data.brand;
+        document.querySelector('#updateItemForm input[name="sale"]').value = data.sale;
+        document.querySelector('#updateItemForm select[name="category"]').value = data.category;
+        document.querySelector('#updateItemForm input[name="img"]').value = data.img;
+        document.querySelector('#updateItemForm input[name="link1"]').value = data.link1;
+        document.querySelector('#updateItemForm input[name="link2"]').value = data.link2;
+        document.querySelector('#updateItemForm input[name="link3"]').value = data.link3;
+        document.querySelector('#updateItemForm input[name="link4"]').value = data.link4;
+    });
+</script>
+
 <script>
     const addItemForm = document.getElementById('addItemForm');
     addItemForm.addEventListener('submit', async (e) => {
@@ -283,6 +417,76 @@
                 confirmButtonText: 'OK'
             });
         }
+    });
+
+
+    const updateItemForm = document.getElementById('updateItemForm');
+    updateItemForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(updateItemForm);
+        const jsonData = {};
+        for (const [key, value] of formData.entries()) {
+            jsonData[key] = value;
+        }
+        var _id = document.getElementById('_id').value;
+        const response = await fetch("/mobile/updateItem/" + _id
+            , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            });
+        const data = await response.json();
+        console.log(data);
+        if (data.message === "Item updated successfully") {
+            Swal.fire({
+                title: 'Success',
+                text: 'Item updated successfully',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                updateItemForm.reset();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Failed to update item',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+    });
+
+    const deleteItem = document.getElementById('deleteItem');
+    deleteItem.addEventListener('click', async (e) => {
+        var _id = document.getElementById('_id').value;
+
+        if (confirm('Are you sure you want to delete this item?')) {
+            const response = await fetch("/mobile/deleteItem/" + _id, {
+                method: 'DELETE'
+            });
+            const data = await response.json();
+            if (data.message === "Item deleted successfully") {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Item deleted successfully',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    updateItemForm.reset();
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to delete item',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        }
+
+
     });
 
 </script>

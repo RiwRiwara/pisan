@@ -68,6 +68,18 @@ def getAllItems():
         items.append(item_obj.to_dict())
     return jsonify(items)
 
+@mobileAPI.route('/getItem/<id>', methods=['GET'])
+def getItem(id):
+    item = db.items.find_one({"_id": ObjectId(id)})
+    item_obj = Item(item['_id'], item['name'], item['sale'], item['brand'], item['img'], item['link1'], item['link2'],  item['link3'],  item['link4'], item['category'])
+    return jsonify(item_obj.to_dict())
+
+@mobileAPI.route('/deleteItem/<id>', methods=['DELETE'])
+def deleteItem(id):
+    db.items.delete_one({"_id": ObjectId(id)})
+    return jsonify({"message": "Item deleted successfully"}), 200
+
+
 
 @mobileAPI.route('/insertItem', methods=['POST'])
 def insertItem():
@@ -80,3 +92,29 @@ def insertItem():
             return jsonify({"message": "Request data must be in JSON format"}), 415
     except Exception as e:
         return jsonify({"message": str(e)}), 500
+    
+    
+@mobileAPI.route('/updateItem/<id>', methods=['POST'])
+def updateItem(id):
+    try:
+        if request.is_json:
+            data = request.json
+            data.pop('_id', None)
+            
+            db.items.update_one({"_id": ObjectId(id)}, {"$set": data})
+            return jsonify({"message": "Item updated successfully"}), 200
+        else:
+            return jsonify({"message": "Request data must be in JSON format"}), 415
+    except Exception as e:
+        return jsonify({"message": str(e)}), 500
+
+
+
+# @mobileAPI.route('/update-img-name', methods=['GET'])
+# def update_img_name():
+#     imageUrl = "https://ezeventstorage.blob.core.windows.net/mobile/"
+#     # add in front of the image name
+#     for item in db.items.find():
+#         if item['img']:
+#             db.items.update_one({"_id": item['_id']}, {"$set": {"img": imageUrl + item['img']}})
+#     return jsonify({"message": "Item updated successfully"}), 200
